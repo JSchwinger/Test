@@ -34,3 +34,82 @@
   #define bit_set(var,bit)        (var) |= (1<<(bit)) 
   #define bit_clear(var,bit)      (var) &= ~(1<<(bit)) 
 */ 
+
+// ConsoleApplication2.cpp: Określa punkt wejścia dla aplikacji konsoli.
+//
+
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+extern void f_wsk();
+extern void f_bit();
+extern void GiveMeTehBinary(char bin);
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	//wsk();
+	f_bit();
+	cin.get();
+	return 0;
+}
+
+void f_wsk()
+{
+	int zmienna = 123;
+	int* wskaznik = &zmienna;
+
+	cout << "zmienna = " << zmienna << endl;
+	cout << "*wskaznik = " << *wskaznik << endl;
+	cout << "Modyfikacja zmiennej przez wskaznik *wskaznik = 88" << endl;
+	*wskaznik = 88;
+	cout << "*wskaznik = " << *wskaznik << endl;
+	cout << "zmienna = " << zmienna << endl;
+
+	int tablica[] = { 5, 62, 71, 84, 92 };
+	int* wsk_do_tab = tablica;
+
+	cout << "Wskaznik do tablicy = " << *(wsk_do_tab + 1) << endl;
+
+	int* a = tablica + 2;
+	cout << "a = " << *a << endl;
+	cout << "sizeof = " << sizeof(a) << endl;
+
+	for (int i = 0; i < sizeof(a)-1; i++)
+	{
+		cout << *(a + i) << endl;
+	}
+}
+
+void f_bit()
+{
+	cout << "f_bit()" << endl;
+	unsigned char c = 0x01;
+	cout << (int)c << endl;
+
+	c = 0x0f;
+
+	GiveMeTehBinary(c);
+
+	c = c | 0x00;
+
+	GiveMeTehBinary(c);
+}
+
+void GiveMeTehBinary(char bin){
+
+	long s;
+
+	for (int i = 0; i < 8; i++){
+
+		s = bin >> i;
+
+		cout << s % 2;
+
+	}
+
+	cout << endl << endl;
+
+
+}
